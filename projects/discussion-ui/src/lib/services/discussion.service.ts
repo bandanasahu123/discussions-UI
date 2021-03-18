@@ -105,12 +105,18 @@ export class DiscussionService {
     // return this.http.get<NSDiscussData.ICategorie>(urlConfig.getSingleCategoryDetails(cid));
   }
   fetchSingleCategoryDetailsSort(cid: number, sort: any, page?: any) {
-    const url = this.appendPage(page, urlConfig.getSingleCategoryDetails(cid));
-    return this.http.get(`${url}&sort=${sort}`);
+    // const url = this.appendPage(page, urlConfig.getSingleCategoryDetails(cid));
+    // return this.http.get(`${url}&sort=${sort}`);
+    return this.csDiscussionService.fetchSingleCategoryDetails(cid);
   }
 
   fetchAllTag() {
     return this.csDiscussionService.fetchAllTags();
+    // return this.http.get(urlConfig.getAllTags());
+  }
+
+  contextBasedTags(data) {
+    return this.csDiscussionService.contextBasedTags(data);
     // return this.http.get(urlConfig.getAllTags());
   }
 
@@ -150,27 +156,23 @@ export class DiscussionService {
   }
 
   fetchRecentD(page?: any) {
-    const url = this.appendPage(page, urlConfig.recentPost());
-    return this.http.get(url);
-    // return this.csDiscussionService.fetchRecentD(page);
+    return this.csDiscussionService.recentPost(page);
   }
 
   getTagBasedDiscussion(tag?: string, page?: any) {
-    const url = this.appendPage(page, urlConfig.getTagBasedDiscussion(tag));
-    return this.http.get(url);
+    return this.csDiscussionService.getTagBasedDiscussion(tag);
   }
 
   getContextBasedDiscussion(data) {
-    return this.http.post(urlConfig.getContextBasedDiscussion(), data);
+    return this.csDiscussionService.getContextBasedDiscussion(data);
   }
 
   getContextBasedTagDiscussion(data) {
-    return this.http.post(urlConfig.getContextBasedTagDiscussion(), data);
+    return this.csDiscussionService.getContextBasedTagDiscussion(data);
   }
 
   fetchPopularD(page?: any) {
-    const url = this.appendPage(page, urlConfig.popularPost());
-    return this.http.get(url);
+    return this.csDiscussionService.popularPost(page);
     // return this.csDiscussionService.fetchPopularD(page);
   }
 
