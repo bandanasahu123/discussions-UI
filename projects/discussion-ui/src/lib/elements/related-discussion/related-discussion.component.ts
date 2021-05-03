@@ -39,8 +39,9 @@ export class RelatedDiscussionComponent implements OnInit, OnChanges {
     this.discussionService.fetchSingleCategoryDetails(cid).subscribe(
       (data: NSDiscussData.ICategoryData) => {
         this.relatedDiscussions = [];
+        // filter to get the not deleted topics
         _.filter(data.topics, (topic) => {
-          if (this.topicId != topic.tid) {
+          if (topic.deleted == 0 && this.topicId != topic.tid) {
             this.relatedDiscussions.push(topic)
           }
         })
